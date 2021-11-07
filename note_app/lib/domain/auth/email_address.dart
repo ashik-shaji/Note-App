@@ -38,3 +38,5 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
     required String failedValue,
   }) = ShortPassword<T>;
 }
+
+void f() {}
