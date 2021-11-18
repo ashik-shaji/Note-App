@@ -30,11 +30,14 @@ dependencies:
   build_runner: ^2.1.4
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
+  firebase_auth: ^3.2.0
+  firebase_core: ^1.10.0
   flutter:
     sdk: flutter
   flutter_bloc: ^7.3.3
   freezed: ^0.15.0+1
   freezed_annotation: ^0.15.0
+  google_sign_in: ^5.2.1
 
 dev_dependencies:
   flutter_lints: ^1.0.0
