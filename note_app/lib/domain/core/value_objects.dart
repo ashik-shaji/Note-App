@@ -40,7 +40,7 @@ class UniqueId extends ValueObject<String> {
 
   factory UniqueId() {
     return UniqueId._(right(
-      Uuid().v1(),
+      const Uuid().v1(),
     ));
   }
 
