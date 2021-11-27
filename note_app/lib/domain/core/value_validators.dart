@@ -1,6 +1,52 @@
 import 'package:dartz/dartz.dart';
 import 'package:note_app/domain/auth/value_objects.dart';
 import 'package:note_app/domain/core/failures.dart';
+import 'package:kt_dart/kt.dart';
+
+Either<ValueFailure<String>, String> validateMaxStringLength(
+  String input,
+  int maxLength,
+) {
+  if (input.length <= maxLength) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.exceedingLength(failedValue: input, max: maxLength),
+    );
+  }
+}
+
+Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
+  if (input.isNotEmpty) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.empty(failedValue: input),
+    );
+  }
+}
+
+Either<ValueFailure<String>, String> validateSingleLine(String input) {
+  if (input.contains('\n')) {
+    return left(ValueFailure.multiline(failedValue: input));
+  } else {
+    return right(input);
+  }
+}
+
+Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T>(
+  KtList<T> input,
+  int maxlength,
+) {
+  if (input.size <= maxlength) {
+    return right(input);
+  } else {
+    return left(ValueFailure.listTooLong(
+      failedValue: input,
+      max: maxlength,
+    ));
+  }
+}
 
 Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   const emailRegex =
