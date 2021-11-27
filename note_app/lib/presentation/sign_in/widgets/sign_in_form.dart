@@ -33,6 +33,7 @@ class SignInForm extends StatelessWidget {
         return Form(
           autovalidateMode: state.showErrorMessages,
           child: ListView(
+            padding: const EdgeInsets.all(8),
             children: [
               SizedBox(height: MediaQuery.of(context).size.height / 15),
               const Text(
@@ -128,6 +129,13 @@ class SignInForm extends StatelessWidget {
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue)),
               ),
+              if (state.isSubmitting!) ...[
+                const SizedBox(height: 8),
+                LinearProgressIndicator(
+                  value: null,
+                  backgroundColor: Colors.green[200],
+                ),
+              ]
             ],
           ),
         );
