@@ -15,9 +15,8 @@ class SplashPage extends StatelessWidget {
         state.map(
           initial: (_) {},
           authenticated: (_) {
-            print('I am Authenticated!');
-            /* Future.delayed(const Duration(milliseconds: 1500)).then(
-                (value) => context.router.replace(const SignInPageRoute())); */
+            Future.delayed(const Duration(milliseconds: 1500)).then((value) =>
+                context.router.replace(const NotesOverviewPageRoute()));
           },
           unauthenticated: (_) {
             Future.delayed(const Duration(milliseconds: 1500)).then(

@@ -28,11 +28,11 @@ class AppWidget extends StatelessWidget {
               ),
           /*appBarTheme: ThemeData.light().appBarTheme.copyWith(
                 backgroundColor: Colors.orange,
-              ),
+              ),*/
           floatingActionButtonTheme:
               ThemeData.light().floatingActionButtonTheme.copyWith(
-                    backgroundColor: Colors.orange,
-                  ),*/
+                    backgroundColor: Colors.blue[900],
+                  ),
           inputDecorationTheme: ThemeData.light().inputDecorationTheme.copyWith(
                 fillColor: Colors.orange,
                 focusColor: Colors.orange,
