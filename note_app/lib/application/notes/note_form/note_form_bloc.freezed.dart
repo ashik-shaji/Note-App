@@ -183,12 +183,13 @@ class _$_Initialized with DiagnosticableTreeMixin implements _Initialized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Initialized &&
-            (identical(other.initialNoteOption, initialNoteOption) ||
-                other.initialNoteOption == initialNoteOption));
+            const DeepCollectionEquality()
+                .equals(other.initialNoteOption, initialNoteOption));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, initialNoteOption);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(initialNoteOption));
 
   @JsonKey(ignore: true)
   @override
@@ -342,11 +343,12 @@ class _$_BodyChanged with DiagnosticableTreeMixin implements _BodyChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _BodyChanged &&
-            (identical(other.bodyStr, bodyStr) || other.bodyStr == bodyStr));
+            const DeepCollectionEquality().equals(other.bodyStr, bodyStr));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bodyStr);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(bodyStr));
 
   @JsonKey(ignore: true)
   @override
@@ -501,11 +503,12 @@ class _$_ColorChanged with DiagnosticableTreeMixin implements _ColorChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ColorChanged &&
-            (identical(other.color, color) || other.color == color));
+            const DeepCollectionEquality().equals(other.color, color));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, color);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(color));
 
   @JsonKey(ignore: true)
   @override
@@ -660,11 +663,12 @@ class _$_TodosChanged with DiagnosticableTreeMixin implements _TodosChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TodosChanged &&
-            (identical(other.todos, todos) || other.todos == todos));
+            const DeepCollectionEquality().equals(other.todos, todos));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, todos);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(todos));
 
   @JsonKey(ignore: true)
   @override
@@ -1095,22 +1099,23 @@ class _$_NoteFormState with DiagnosticableTreeMixin implements _NoteFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NoteFormState &&
-            (identical(other.note, note) || other.note == note) &&
-            (identical(other.showErrorMessages, showErrorMessages) ||
-                other.showErrorMessages == showErrorMessages) &&
-            (identical(other.isEditing, isEditing) ||
-                other.isEditing == isEditing) &&
-            (identical(other.isSaving, isSaving) ||
-                other.isSaving == isSaving) &&
-            (identical(other.saveFailureOrSuccessOption,
-                    saveFailureOrSuccessOption) ||
-                other.saveFailureOrSuccessOption ==
-                    saveFailureOrSuccessOption));
+            const DeepCollectionEquality().equals(other.note, note) &&
+            const DeepCollectionEquality()
+                .equals(other.showErrorMessages, showErrorMessages) &&
+            const DeepCollectionEquality().equals(other.isEditing, isEditing) &&
+            const DeepCollectionEquality().equals(other.isSaving, isSaving) &&
+            const DeepCollectionEquality().equals(
+                other.saveFailureOrSuccessOption, saveFailureOrSuccessOption));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, note, showErrorMessages,
-      isEditing, isSaving, saveFailureOrSuccessOption);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(note),
+      const DeepCollectionEquality().hash(showErrorMessages),
+      const DeepCollectionEquality().hash(isEditing),
+      const DeepCollectionEquality().hash(isSaving),
+      const DeepCollectionEquality().hash(saveFailureOrSuccessOption));
 
   @JsonKey(ignore: true)
   @override

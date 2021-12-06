@@ -24,10 +24,11 @@ class NoteRepository implements INoteRepository {
     yield* userDoc.noteCollection
         .orderBy('serverTimeStamp', descending: true)
         .snapshots()
-        .map((snapshot) => right<NoteFailure, KtList<Note>>(snapshot.docs
-            .map((doc) => NoteDto.fromFirestore(doc).toDomain())
-            .toImmutableList()))
-        .onErrorReturnWith((e, stackTrace) {
+        .map((snapshot) {
+      return right<NoteFailure, KtList<Note>>(snapshot.docs.map((doc) {
+        return NoteDto.fromFirestore(doc).toDomain();
+      }).toImmutableList());
+    }).onErrorReturnWith((e, stackTrace) {
       if (e is PlatformException && e.message!.contains('permission-denied')) {
         return left(const NoteFailure.insufficientPermission());
       } else {

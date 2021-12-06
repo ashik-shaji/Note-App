@@ -164,14 +164,19 @@ class _$_Note extends _Note {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Note &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.body, body) || other.body == body) &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.todos, todos) || other.todos == todos));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.body, body) &&
+            const DeepCollectionEquality().equals(other.color, color) &&
+            const DeepCollectionEquality().equals(other.todos, todos));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, body, color, todos);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(body),
+      const DeepCollectionEquality().hash(color),
+      const DeepCollectionEquality().hash(todos));
 
   @JsonKey(ignore: true)
   @override

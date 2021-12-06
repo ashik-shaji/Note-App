@@ -204,17 +204,22 @@ class _$_NoteDto extends _NoteDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NoteDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.body, body) || other.body == body) &&
-            (identical(other.color, color) || other.color == color) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.body, body) &&
+            const DeepCollectionEquality().equals(other.color, color) &&
             const DeepCollectionEquality().equals(other.todos, todos) &&
-            (identical(other.serverTimeStamp, serverTimeStamp) ||
-                other.serverTimeStamp == serverTimeStamp));
+            const DeepCollectionEquality()
+                .equals(other.serverTimeStamp, serverTimeStamp));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, body, color,
-      const DeepCollectionEquality().hash(todos), serverTimeStamp);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(body),
+      const DeepCollectionEquality().hash(color),
+      const DeepCollectionEquality().hash(todos),
+      const DeepCollectionEquality().hash(serverTimeStamp));
 
   @JsonKey(ignore: true)
   @override
@@ -403,13 +408,17 @@ class _$_TodoItemDto extends _TodoItemDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TodoItemDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.done, done) || other.done == done));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.done, done));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, done);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(done));
 
   @JsonKey(ignore: true)
   @override

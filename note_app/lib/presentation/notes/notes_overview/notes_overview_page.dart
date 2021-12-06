@@ -6,6 +6,7 @@ import 'package:note_app/application/auth/auth_bloc.dart';
 import 'package:note_app/application/notes/note_actor/note_actor_bloc.dart';
 import 'package:note_app/application/notes/note_watcher/note_watcher_bloc.dart';
 import 'package:note_app/injection.dart';
+import 'package:note_app/presentation/notes/notes_overview/widgets/notes_overview_body_widget.dart';
 import 'package:note_app/presentation/routes/router.gr.dart';
 
 class NotesOverviewPage extends StatelessWidget {
@@ -15,10 +16,14 @@ class NotesOverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<NoteWatcherBloc>(
-          create: (context) => getIt<NoteWatcherBloc>()
-            ..add(const NoteWatcherEvent.watchAllStarted()),
-        ),
+        BlocProvider<NoteWatcherBloc>(create: (context) {
+          try {
+            return getIt<NoteWatcherBloc>()
+              ..add(const NoteWatcherEvent.watchAllStarted());
+          } catch (e) {
+            throw Exception();
+          }
+        }),
         BlocProvider<NoteActorBloc>(
           create: (context) => getIt<NoteActorBloc>(),
         ),
@@ -69,9 +74,12 @@ class NotesOverviewPage extends StatelessWidget {
               ),
             ],
           ),
+          body: const NotesOverviewBody(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              //TODO: Navigate to NoteFormPage
+              context
+                  .read<NoteWatcherBloc>()
+                  .add(const NoteWatcherEvent.watchAllStarted());
             },
             child: const Icon(Icons.add),
           ),

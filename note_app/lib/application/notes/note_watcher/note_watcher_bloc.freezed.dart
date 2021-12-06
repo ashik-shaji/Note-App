@@ -386,12 +386,13 @@ class _$_NotesReceived implements _NotesReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NotesReceived &&
-            (identical(other.failureOrNotes, failureOrNotes) ||
-                other.failureOrNotes == failureOrNotes));
+            const DeepCollectionEquality()
+                .equals(other.failureOrNotes, failureOrNotes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failureOrNotes);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failureOrNotes));
 
   @JsonKey(ignore: true)
   @override
@@ -861,11 +862,12 @@ class _$_LoadSuccess implements _LoadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoadSuccess &&
-            (identical(other.notes, notes) || other.notes == notes));
+            const DeepCollectionEquality().equals(other.notes, notes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, notes);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(notes));
 
   @JsonKey(ignore: true)
   @override
@@ -1015,12 +1017,13 @@ class _$_Loadfailure implements _Loadfailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Loadfailure &&
-            (identical(other.noteFailure, noteFailure) ||
-                other.noteFailure == noteFailure));
+            const DeepCollectionEquality()
+                .equals(other.noteFailure, noteFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, noteFailure);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(noteFailure));
 
   @JsonKey(ignore: true)
   @override
