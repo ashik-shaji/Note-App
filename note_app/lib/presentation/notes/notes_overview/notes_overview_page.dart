@@ -76,11 +76,7 @@ class NotesOverviewPage extends StatelessWidget {
           ),
           body: const NotesOverviewBody(),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              context
-                  .read<NoteWatcherBloc>()
-                  .add(const NoteWatcherEvent.watchAllStarted());
-            },
+            onPressed: () {},
             child: const Icon(Icons.add),
           ),
         ),
