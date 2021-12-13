@@ -7,6 +7,7 @@ import 'package:note_app/application/notes/note_actor/note_actor_bloc.dart';
 import 'package:note_app/application/notes/note_watcher/note_watcher_bloc.dart';
 import 'package:note_app/injection.dart';
 import 'package:note_app/presentation/notes/notes_overview/widgets/notes_overview_body_widget.dart';
+import 'package:note_app/presentation/notes/notes_overview/widgets/uncompleted_switch.dart';
 import 'package:note_app/presentation/routes/router.gr.dart';
 
 class NotesOverviewPage extends StatelessWidget {
@@ -68,15 +69,14 @@ class NotesOverviewPage extends StatelessWidget {
               },
             ),
             actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.indeterminate_check_box),
-              ),
+              UncompletedSwitch(),
             ],
           ),
           body: const NotesOverviewBody(),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              context.router.push(NoteFormPageRoute(editedNote: null));
+            },
             child: const Icon(Icons.add),
           ),
         ),

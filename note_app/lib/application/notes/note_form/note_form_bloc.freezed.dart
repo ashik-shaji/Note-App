@@ -898,7 +898,7 @@ class _$NoteFormStateTearOff {
 
   _NoteFormState call(
       {required Note note,
-      required bool showErrorMessages,
+      AutovalidateMode showErrorMessages = AutovalidateMode.disabled,
       required bool isEditing,
       required bool isSaving,
       required Option<Either<NoteFailure, Unit>> saveFailureOrSuccessOption}) {
@@ -918,7 +918,7 @@ const $NoteFormState = _$NoteFormStateTearOff();
 /// @nodoc
 mixin _$NoteFormState {
   Note get note => throw _privateConstructorUsedError;
-  bool get showErrorMessages => throw _privateConstructorUsedError;
+  AutovalidateMode get showErrorMessages => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
   bool get isSaving => throw _privateConstructorUsedError;
   Option<Either<NoteFailure, Unit>> get saveFailureOrSuccessOption =>
@@ -936,7 +936,7 @@ abstract class $NoteFormStateCopyWith<$Res> {
       _$NoteFormStateCopyWithImpl<$Res>;
   $Res call(
       {Note note,
-      bool showErrorMessages,
+      AutovalidateMode showErrorMessages,
       bool isEditing,
       bool isSaving,
       Option<Either<NoteFailure, Unit>> saveFailureOrSuccessOption});
@@ -969,7 +969,7 @@ class _$NoteFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AutovalidateMode,
       isEditing: isEditing == freezed
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -1002,7 +1002,7 @@ abstract class _$NoteFormStateCopyWith<$Res>
   @override
   $Res call(
       {Note note,
-      bool showErrorMessages,
+      AutovalidateMode showErrorMessages,
       bool isEditing,
       bool isSaving,
       Option<Either<NoteFailure, Unit>> saveFailureOrSuccessOption});
@@ -1038,7 +1038,7 @@ class __$NoteFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AutovalidateMode,
       isEditing: isEditing == freezed
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -1060,15 +1060,16 @@ class __$NoteFormStateCopyWithImpl<$Res>
 class _$_NoteFormState with DiagnosticableTreeMixin implements _NoteFormState {
   const _$_NoteFormState(
       {required this.note,
-      required this.showErrorMessages,
+      this.showErrorMessages = AutovalidateMode.disabled,
       required this.isEditing,
       required this.isSaving,
       required this.saveFailureOrSuccessOption});
 
   @override
   final Note note;
+  @JsonKey(defaultValue: AutovalidateMode.disabled)
   @override
-  final bool showErrorMessages;
+  final AutovalidateMode showErrorMessages;
   @override
   final bool isEditing;
   @override
@@ -1126,7 +1127,7 @@ class _$_NoteFormState with DiagnosticableTreeMixin implements _NoteFormState {
 abstract class _NoteFormState implements NoteFormState {
   const factory _NoteFormState(
       {required Note note,
-      required bool showErrorMessages,
+      AutovalidateMode showErrorMessages,
       required bool isEditing,
       required bool isSaving,
       required Option<Either<NoteFailure, Unit>>
@@ -1135,7 +1136,7 @@ abstract class _NoteFormState implements NoteFormState {
   @override
   Note get note;
   @override
-  bool get showErrorMessages;
+  AutovalidateMode get showErrorMessages;
   @override
   bool get isEditing;
   @override

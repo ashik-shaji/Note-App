@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/src/collection/kt_list.dart';
 import 'package:dartz/dartz.dart';
@@ -29,7 +28,7 @@ class NoteRepository implements INoteRepository {
         return NoteDto.fromFirestore(doc).toDomain();
       }).toImmutableList());
     }).onErrorReturnWith((e, stackTrace) {
-      if (e is PlatformException && e.message!.contains('permission-denied')) {
+      if (e is FirebaseException && e.code.contains('permission-denied')) {
         return left(const NoteFailure.insufficientPermission());
       } else {
         // log.error(e.toString());
@@ -68,7 +67,7 @@ class NoteRepository implements INoteRepository {
           ),
         )
         .onErrorReturnWith((e, stackTrace) {
-      if (e is PlatformException && e.message!.contains('permission-denied')) {
+      if (e is FirebaseException && e.code.contains('permission-denied')) {
         return left(const NoteFailure.insufficientPermission());
       } else {
         // log.error(e.toString());
@@ -83,11 +82,13 @@ class NoteRepository implements INoteRepository {
       final userDoc = await _firestore.userDocument();
       final noteDto = NoteDto.fromDomain(note);
 
-      await userDoc.noteCollection.doc(noteDto.id).set(noteDto.toJson());
+      await userDoc.noteCollection
+          .doc(noteDto.id)
+          .set(noteDto.toJson(), SetOptions(merge: true));
 
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message!.contains('permission-denied')) {
+    } on FirebaseException catch (e) {
+      if (e.code.contains('permission-denied')) {
         return left(const NoteFailure.insufficientPermission());
       } else {
         return left(const NoteFailure.unexpected());
@@ -104,10 +105,10 @@ class NoteRepository implements INoteRepository {
       await userDoc.noteCollection.doc(noteDto.id).update(noteDto.toJson());
 
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message!.contains('permission-denied')) {
+    } on FirebaseException catch (e) {
+      if (e.code.contains('permission-denied')) {
         return left(const NoteFailure.insufficientPermission());
-      } else if (e.message!.contains('not-found')) {
+      } else if (e.code.contains('not-found')) {
         return left(const NoteFailure.unableToUpdate());
       } else {
         return left(const NoteFailure.unexpected());
@@ -124,10 +125,10 @@ class NoteRepository implements INoteRepository {
       await userDoc.noteCollection.doc(noteId).delete();
 
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message!.contains('permission-denied')) {
+    } on FirebaseException catch (e) {
+      if (e.code.contains('permission-denied')) {
         return left(const NoteFailure.insufficientPermission());
-      } else if (e.message!.contains('not-found')) {
+      } else if (e.code.contains('not-found')) {
         return left(const NoteFailure.unableToUpdate());
       } else {
         return left(const NoteFailure.unexpected());
