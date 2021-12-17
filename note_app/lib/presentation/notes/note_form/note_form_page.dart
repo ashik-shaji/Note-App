@@ -7,13 +7,11 @@ import 'package:note_app/application/notes/note_form/note_form_bloc.dart';
 import 'package:note_app/domain/notes/note.dart';
 import 'package:note_app/injection.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:note_app/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
 import 'package:note_app/presentation/notes/note_form/widgets/add_todo_tile_widget.dart';
 import 'package:note_app/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:note_app/presentation/notes/note_form/widgets/color_field_widget.dart';
 import 'package:note_app/presentation/notes/note_form/widgets/todo_list_widget.dart';
-import 'package:note_app/presentation/routes/router.gr.dart';
 import 'package:provider/provider.dart';
 
 class NoteFormPage extends StatelessWidget {
@@ -145,11 +143,11 @@ class NoteFormPageScaffold extends StatelessWidget {
               autovalidateMode: state.showErrorMessages,
               child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                    const BodyField(),
-                    const ColorField(),
-                    const TodoList(),
-                    const AddTodoTile(),
+                  children: const [
+                    BodyField(),
+                    ColorField(),
+                    TodoList(),
+                    AddTodoTile(),
                   ],
                 ),
               ),

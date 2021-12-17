@@ -68,7 +68,7 @@ class NotesOverviewPage extends StatelessWidget {
                 context.read<AuthBloc>().add(const AuthEvent.signedOut());
               },
             ),
-            actions: [
+            actions: const [
               UncompletedSwitch(),
             ],
           ),
